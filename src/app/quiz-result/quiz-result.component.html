@@ -1,0 +1,32 @@
+<div class="card mt-3">
+  <div class="card-header text-center">RESULTS</div>
+
+  <div class="card-body">
+    <div *ngFor="let q of userAnswers">
+      <div>{{ q.question }}</div>
+      <div class="mb-3">
+        <ng-container *ngFor="let a of q.answers">
+          <button appAnswerBtnColor [correct_answer]="q.correct_answer!" [user_answer]="q.user_answer!" [answer]="a!">
+            {{ a }}
+          </button>
+        </ng-container>
+      </div>
+    </div>
+
+
+
+    <div class="row">
+      <div class="col-6 offset-3">
+        <div class="text-center my-3" appScoredBgColor [scored]="score">
+          You scored {{ score }} out of 5.
+        </div>
+
+        <div class="d-grid gap-2">
+          <button routerLink="/" class="btn btn-secondary" type="button">
+            Create a new quiz
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
