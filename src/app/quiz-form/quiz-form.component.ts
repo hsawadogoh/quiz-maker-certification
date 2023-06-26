@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
-import { Category } from '../models/category.model';
-import { QuizQuestion } from '../models/quiz-question.model';
+import { Category } from '../shared/models/category.model';
+import { QuizQuestion } from '../shared/models/quiz-question.model';
 import { QuizService } from '../shared/quiz.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class QuizFormComponent implements OnInit {
   quizQuestions$: Observable<QuizQuestion[] | undefined> = new Observable<QuizQuestion[]>();
   numberOfAnswerQuiz = 0;
 
-  constructor(private quizService: QuizService, private router: Router) {}
+  constructor(private quizService: QuizService) {}
 
   ngOnInit() {
     this.getCategories();

@@ -1,19 +1,19 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
-import { QuizQuestion } from '../models/quiz-question.model';
-import { QuizRequest } from '../models/quiz-request.model';
-import { TriviaCategories } from '../models/trivia-categories.model';
+import { QuizQuestion } from './models/quiz-question.model';
+import { QuizRequest } from './models/quiz-request.model';
+import { TriviaCategories } from './models/trivia-categories.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class QuizService {
-  private BASE_URL = 'https://opentdb.com';
-  private AMOUNT = 5;
-  private TYPE = 'multiple';
+  private BASE_URL: string = 'https://opentdb.com';
+  private AMOUNT: number = 5;
+  private TYPE: string = 'multiple';
   private userQuizAnswers: QuizQuestion[] = [];
-  private score = 0;
+  private score: number = 0;
 
   constructor(private http: HttpClient) {}
 
@@ -22,8 +22,7 @@ export class QuizService {
   }
 
   onCreateQuizQuestion(categoryId: number, difficulty: string): Observable<QuizRequest> {
-    return this.http.get<QuizRequest>(
-      `${this.BASE_URL}/api.php?amount=${this.AMOUNT}&category=${categoryId}&difficulty=${difficulty}&type=${this.TYPE}`
+    return this.http.get<QuizRequest>(`${this.BASE_URL}/api.php?amount=${this.AMOUNT}&category=${categoryId}&difficulty=${difficulty}&type=${this.TYPE}`
     );
   }
 
@@ -32,18 +31,23 @@ export class QuizService {
 
     if (quizRequest.response_code === 0 && quizRequest.results !== undefined) {
       quizQuestions = quizRequest.results.map((quiz) => {
-        let quizQuestion = new QuizQuestion();
+        let quizQuestion: QuizQuestion = new QuizQuestion();
         quizQuestion.category = quiz.category;
         quizQuestion.question = quiz.question;
         quizQuestion.correct_answer = quiz.correct_answer;
         quizQuestion.answers = quiz.incorrect_answers;
         quizQuestion.answers?.push(quiz.correct_answer!);
+        quizQuestion.answers = this.shuffleAnswers(quizQuestion.answers!);
         return quizQuestion;
       });
     }
 
     this.userQuizAnswers = quizQuestions;
     return quizQuestions;
+  }
+
+  private shuffleAnswers(answers: string[]): string[] {
+    return answers.sort(() => Math.random() - 0.5);
   }
 
   setUserAnswer(userAnswer: QuizQuestion): number {

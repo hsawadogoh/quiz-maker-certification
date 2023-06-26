@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { QuizQuestion } from '../models/quiz-question.model';
+import { QuizQuestion } from '../shared/models/quiz-question.model';
 import { QuizService } from '../shared/quiz.service';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { QuizQuestion } from '../../models/quiz-question.model';
+import { QuizQuestion } from '../../shared/models/quiz-question.model';
 
 @Component({
   selector: 'app-one-quiz-part',
@@ -22,5 +22,5 @@ export class OneQuizPartComponent implements OnInit {
     this.answerEmitter.emit(this.quizQuestion);
   }
 
-  
+
 }
