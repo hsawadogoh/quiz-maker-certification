@@ -3,11 +3,11 @@
 
   <div class="card-body">
     <div *ngFor="let q of userAnswers">
-      <div>{{ q.question }}</div>
+      <div>{{ q.question | htmlFormatter }}</div>
       <div class="mb-3">
         <ng-container *ngFor="let a of q.answers">
           <button appAnswerBtnColor [correct_answer]="q.correct_answer!" [user_answer]="q.user_answer!" [answer]="a!">
-            {{ a }}
+            {{ a | htmlFormatter }}
           </button>
         </ng-container>
       </div>

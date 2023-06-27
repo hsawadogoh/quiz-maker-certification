@@ -11,7 +11,6 @@ import { QuizService } from '../shared/quiz.service';
   styleUrls: ['./quiz-form.component.css'],
 })
 export class QuizFormComponent implements OnInit {
-
   categories$: Observable<Category[] | undefined> = new Observable<Category[]>();
   quizQuestions$: Observable<QuizQuestion[] | undefined> = new Observable<QuizQuestion[]>();
   numberOfAnswerQuiz = 0;

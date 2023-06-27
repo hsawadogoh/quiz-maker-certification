@@ -1,4 +1,4 @@
-<div>{{ quizQuestion.question }}</div>
+<div>{{ quizQuestion.question | htmlFormatter }}</div>
 <div class="mb-3">
   <button
     *ngFor="let a of quizQuestion.answers"
@@ -9,6 +9,6 @@
     "
     (click)="onGetChoice(a)"
   >
-    {{ a }}
+    {{ a | htmlFormatter }}
   </button>
 </div>
