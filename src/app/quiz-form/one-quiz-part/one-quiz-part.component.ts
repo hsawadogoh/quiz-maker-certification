@@ -21,6 +21,4 @@ export class OneQuizPartComponent implements OnInit {
     this.quizQuestion.user_answer = answer;
     this.answerEmitter.emit(this.quizQuestion);
   }
-
-
 }

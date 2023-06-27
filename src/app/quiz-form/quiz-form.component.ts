@@ -11,11 +11,12 @@ import { QuizService } from '../shared/quiz.service';
   styleUrls: ['./quiz-form.component.css'],
 })
 export class QuizFormComponent implements OnInit {
+
   categories$: Observable<Category[] | undefined> = new Observable<Category[]>();
   quizQuestions$: Observable<QuizQuestion[] | undefined> = new Observable<QuizQuestion[]>();
   numberOfAnswerQuiz = 0;
 
-  constructor(private quizService: QuizService) {}
+  constructor(private quizService: QuizService, private router: Router) {}
 
   ngOnInit() {
     this.getCategories();
@@ -37,5 +38,10 @@ export class QuizFormComponent implements OnInit {
 
   getUserAnswer(currentUserAnswer: QuizQuestion): void {
     this.numberOfAnswerQuiz = this.quizService.setUserAnswer(currentUserAnswer);
+  }
+
+  onSubmitQuiz() {
+    this.quizService.onSaveUserQuizAnswers();
+    this.router.navigate(['/results']);
   }
 }

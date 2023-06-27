@@ -40,7 +40,7 @@
     <div class="row mt-5" *ngIf="numberOfAnswerQuiz === 5">
       <div class="col-6 offset-3">
         <div class="d-grid gap-2">
-          <button class="btn btn-secondary" routerLink="/results" type="button">
+          <button class="btn btn-secondary" (click)="onSubmitQuiz()" type="button">
             Submit
           </button>
         </div>
