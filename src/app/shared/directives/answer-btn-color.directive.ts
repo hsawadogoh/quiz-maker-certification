@@ -7,7 +7,7 @@ export class AnswerBtnColorDirective implements  AfterViewInit {
 
   constructor() { }
 
-  @HostBinding('class') btnClass = 'mx-2 mt-1 btn ';
+  @HostBinding('class') btnClass: string = 'mx-2 mt-1 btn ';
 
   @Input()
   public answer!: string;

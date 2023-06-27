@@ -5,5 +5,7 @@ export class QuizQuestion {
     public correct_answer?: string,
     public user_answer?: string,
     public answers?: string[]
-  ) {}
+  ) {
+    this.answers = [];
+  }
 }
